@@ -1,117 +1,142 @@
-using System;
-using System.Collections.Generic;
+using AYellowpaper.SerializedCollections;
 using UnityEngine;
-using UnityEngine.PlayerLoop;
 using UnityEngine.Tilemaps;
 
 public class PlayerController : MonoBehaviour
 {
-    private Rigidbody2D rb;
-    private SurfaceSensor surfaceSensor;
-    private HealthPoint healthPoint;
+	[Header("Refernces"), Space]
+	[SerializeField] private Stats stats;
+	[SerializeField] private Rigidbody2D rb;
+	[SerializeField] private SurfaceSensor surfaceSensor;
+	[SerializeField] private Transform playerGraphic;
 
-    [Header("Movement")]
-    [SerializeField] private float acceleration = 0.29f;
-    [SerializeField] private float maxXSpeed = 3f;
-    [Range(0, 1) , SerializeField] private float groundDecay = 0.8f;
-    public float xInput {get; private set;}
+	[Header("Movement"), Space]
+	[SerializeField] private float acceleration = 0.29f;
+	[SerializeField] private float deceleration = 0.29f;
 
-    [Header("Jumping")]
-    [SerializeField] private float jumpForce = 5f;
-    [SerializeField] private float gravity = -9.81f;
-    [SerializeField] private float maxFallSpeed = 70f;
+	[Header("Jumping"), Space]
+	[SerializeField] private float gravity = 9.81f;
 
-    [Header("Digging")]
-    [SerializeField] private Tilemap ground;
-    [SerializeField] private Transform digPoint;
-    [SerializeField] private float digSpeed = 1f;
-    [SerializeField] private float timeFromLastDig = 0f;
+	[Header("Digging")]
+	[SerializeField] private Tilemap ground;
+	[SerializeField] private Transform digPoint;
 
-    [SerializeField]private List<TypeTile> listTiles;
-    private Dictionary<TileBase, TypeTile> tileData;
+	[Header("Tile Table"), Space]
+	[SerializeField]private SerializedDictionary<TileBase, TypeTile> tileTable;
 
-    private void Awake()
-    {
-        rb = GetComponent<Rigidbody2D>();
-        surfaceSensor = GetComponent<SurfaceSensor>();
-        healthPoint = GetComponent<HealthPoint>();
+	private float _inputX;
+	private float _previousInputX;
+	private float _digInterval;
+	private float _speedX;
+	private bool _needToJump;
+	private bool _facingRight = true;
 
-        //Get all the tiles from the list and add them to a dictionary for easy access
-        tileData = new Dictionary<TileBase, TypeTile>();
+	private void Update()
+	{
+		CheckInput();
+		CheckFlip();
+		CheckDigging();
 
-        foreach(TypeTile tile in listTiles)
-        {
-            foreach(TileBase tileBase in tile.Tiles)
-            {
-                tileData.Add(tileBase, tile);
-            }
-        }
-    }
+		_digInterval -= Time.deltaTime;
+	}
 
-    private void Update()
-    {
-        CheckInput();
-        DigTile();
+	private void FixedUpdate()
+	{
+		HandleJumping();
+		HandleMovement();
+	}
 
-        timeFromLastDig += Time.deltaTime;
-    }
+	private void CheckInput()
+	{
+		if (LegacyInputManager.Instance.GetKeyDown(KeybindingActions.Jump) && surfaceSensor.Grounded)
+		{
+			_needToJump = true;
+		}
 
-    private void FixedUpdate(){
-        ApplyPhysics();
-        HandleMovement();
-    }
+		_inputX = LegacyInputManager.Instance.GetAxisRaw("Horizontal");
+		_previousInputX = Mathf.Sign(_speedX);
+	}
 
-    private void CheckInput()
-    {
-        xInput = Input.GetAxis("Horizontal");
-    }
+	private void CheckFlip()
+	{
+		bool mustFlip = (_facingRight && _speedX < 0f) || (!_facingRight && _speedX > 0f);
 
-    private void DigTile()
-    {
-        if(Input.GetMouseButtonDown(0) && surfaceSensor.grounded && timeFromLastDig > 1/digSpeed)
-        {
-            Vector3Int gridPosition = ground.WorldToCell(digPoint.position);
+		if (mustFlip)
+		{
+			playerGraphic.Rotate(0f, -180f, 0f);
+			_facingRight = !_facingRight;
+		}
+	}
 
-            TileBase currentTile = ground.GetTile(gridPosition);
+	private void CheckDigging()
+	{
+		if((Input.GetMouseButton(0) || LegacyInputManager.Instance.GetKey(KeybindingActions.Dig)) && _digInterval <= 0f)
+		{
+			Vector3Int gridPosition = ground.WorldToCell(digPoint.position);
 
-            if(currentTile != null && tileData[currentTile].Destructible)
-            {
-                ground.SetTile(gridPosition, null);
-            }
+			TileBase currentTile = ground.GetTile(gridPosition);
 
-            timeFromLastDig = 0f;
-        }
-    }
+			if(currentTile != null && tileTable.TryGetValue(currentTile, out TypeTile typeTile))
+			{
+				if (typeTile.Destructible)
+				{
+					ground.SetTile(gridPosition, null);
+				}
+			}
 
-    private void HandleMovement()
-    {
-        if(Mathf.Abs(xInput) > 0)
-        {
-            //increment velocity by our acceleration, then clamp within max
-            float increment = xInput * acceleration;
-            float newSpeed = Math.Clamp(rb.linearVelocityX + increment, -maxXSpeed, maxXSpeed);
-            rb.linearVelocity = new Vector2(newSpeed, rb.linearVelocityY);
-        }
+			_digInterval = stats.GetDynamicStat(Stat.DigInterval);
+		}
+	}
 
-        if((Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow)) && surfaceSensor.grounded)
-        {
-            rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
-        }
-    }
+	private void HandleMovement()
+	{		
+		if (Mathf.Abs(_inputX) > 0f)
+		{
+			// Accelerate.
+			if (_inputX >= 0f)
+			{
+				_speedX += acceleration * _inputX * Time.deltaTime;
+				_speedX = Mathf.Min(stats.GetDynamicStat(Stat.MoveSpeed), _speedX);
+			}
+			else
+			{
+				_speedX += acceleration * _inputX * Time.deltaTime;
+				_speedX = Mathf.Max(-stats.GetDynamicStat(Stat.MoveSpeed), _speedX);
+			}
+		}
+		else if (Mathf.Abs(_speedX) > 0f)
+		{
+			// Decelerate.
+			if (_speedX >= 0f)
+			{
+				_speedX -= deceleration * _previousInputX * Time.deltaTime;
+				_speedX = Mathf.Max(0f, _speedX);
+			}
+			else
+			{
+				_speedX -= deceleration * _previousInputX * Time.deltaTime;
+				_speedX = Mathf.Min(0f, _speedX);
+			}
+		}
+		
+		rb.linearVelocityX = _speedX;
+	}
 
-    private void ApplyPhysics()
-    {
-        //Apply Fiction
-        if(surfaceSensor.grounded && Mathf.Abs(xInput) < 0.1f)
-        {
-            rb.linearVelocity *= groundDecay;
-        }
-
-        //Apply Gravity
-        if(!surfaceSensor.grounded)
-        {
-            rb.linearVelocity = new Vector2(0f, gravity * Time.deltaTime);
-            rb.linearVelocity = Vector2.ClampMagnitude(rb.linearVelocity, maxFallSpeed);
-        }
-    }
+	private void HandleJumping()
+	{
+		if(_needToJump)
+		{
+			rb.AddForce(Vector2.up * stats.GetDynamicStat(Stat.JumpForce), ForceMode2D.Impulse);
+		}
+		
+		if(!surfaceSensor.Grounded)
+		{
+			rb.linearVelocityY -= gravity * Time.deltaTime;
+			rb.linearVelocityY = Mathf.Max(rb.linearVelocityY, -stats.GetStaticStat(Stat.FallSpeed));
+		}
+		else
+		{
+			_needToJump = false;
+		}
+	}
 }

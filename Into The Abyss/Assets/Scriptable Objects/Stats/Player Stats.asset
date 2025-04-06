@@ -9,22 +9,26 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d1ae13f1dd3628246b39a1547b02fcb9, type: 3}
-  m_Name: Main Keyset
+  m_Script: {fileID: 11500000, guid: 5ea2b7a09fc2589449c2d3290107bb31, type: 3}
+  m_Name: Player Stats
   m_EditorClassIdentifier: 
-  keyTable:
+  dynamicStats:
     _serializedList:
     - Key: 0
-      Value: 115
+      Value: 5
     - Key: 1
-      Value: 97
+      Value: 0.2
     - Key: 2
-      Value: 100
+      Value: 7
     - Key: 3
-      Value: 0
+      Value: 5
+  staticStats:
+    _serializedList:
     - Key: 4
-      Value: 0
+      Value: 3
     - Key: 5
-      Value: 32
+      Value: 0.3
     - Key: 6
-      Value: 27
+      Value: 0.6666667
+    - Key: 7
+      Value: 10

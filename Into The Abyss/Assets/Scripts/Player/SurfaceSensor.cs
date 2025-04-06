@@ -2,19 +2,21 @@ using UnityEngine;
 
 public class SurfaceSensor : MonoBehaviour
 {
-    public bool grounded { get; private set; }
+	[Header("References"), Space]
+	[SerializeField] private Transform groundCheck;
+	[SerializeField] private Transform wallCheck;
+	[SerializeField] private LayerMask groundLayers;
 
-    public Collider2D colCheck;
+	[Header("Settings"), Space]
+	[SerializeField] private float groundCheckRadius;
+	[SerializeField] private float wallCheckRadius;
 
-    public LayerMask groundLayer;
+	public bool Grounded { get; private set; }
+	public bool TouchedWalls { get; private set; }
 
-    private void FixedUpdate()
-    {
-        CheckGrounded();
-    }
-
-    private void CheckGrounded()
-    {
-        grounded = Physics2D.OverlapAreaAll(colCheck.bounds.min, colCheck.bounds.max, groundLayer).Length > 0;
-    }
+	private void FixedUpdate()
+	{
+		Grounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayers) != null;
+		TouchedWalls = Physics2D.OverlapCircle(wallCheck.position, wallCheckRadius, groundLayers) != null;
+	}
 }

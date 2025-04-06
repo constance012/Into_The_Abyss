@@ -17,10 +17,13 @@ public class Stats : ScriptableObject
 	private readonly HashSet<StatsUpgrade> _appliedUpgrades = new HashSet<StatsUpgrade>();
 	private readonly HashSet<Stat> _toStringIgnoreStats = new HashSet<Stat>()
 	{
+		Stat.FallSpeed,
+		Stat.JumpForce,
+		Stat.DigInterval,
 		Stat.InvincibilityTime,
 		Stat.ProjectileSpeed,
 		Stat.ProjectileLifeTime,
-		Stat.ProjectileTrackingRigidity,
+		Stat.ProjectileTrackingRigidity
 	};
 
 	public void AddUpgrade(StatsUpgrade upgrade)
@@ -113,14 +116,15 @@ public enum Stat
 {
 	// Dynamic.
 	MaxHealth,
-	Damage,
-	AttackSpeed,
+	DigInterval,
 	MoveSpeed,
-	InvincibilityTime,
+	JumpForce,
 
 	// Static.
 	KnockBackStrength,
 	KnockBackRes,
+	InvincibilityTime,
+	FallSpeed,
 	ProjectileSpeed,
 	ProjectileTrackingRigidity,
 	ProjectileLifeTime
