@@ -6,7 +6,7 @@ public class PlayerController : MonoBehaviour
 {
 	[Header("Refernces"), Space]
 	[SerializeField] private Stats stats;
-	[SerializeField] private Rigidbody2D rb;
+	[SerializeField] private Rigidbody2D rb2D;
 	[SerializeField] private SurfaceSensor surfaceSensor;
 	[SerializeField] private Transform playerGraphic;
 
@@ -17,12 +17,14 @@ public class PlayerController : MonoBehaviour
 	[Header("Jumping"), Space]
 	[SerializeField] private float gravity = 9.81f;
 
-	[Header("Digging")]
+	[Header("Digging"), Space]
 	[SerializeField] private Tilemap ground;
 	[SerializeField] private Transform digPoint;
 
 	[Header("Tile Table"), Space]
-	[SerializeField]private SerializedDictionary<TileBase, TypeTile> tileTable;
+	[SerializeField] private SerializedDictionary<TileBase, TypeTile> tileTable;
+
+	public static Vector2 Position { get; private set; }
 
 	private float _inputX;
 	private float _previousInputX;
@@ -44,6 +46,8 @@ public class PlayerController : MonoBehaviour
 	{
 		HandleJumping();
 		HandleMovement();
+
+		Position = rb2D.position;
 	}
 
 	private void CheckInput()
@@ -149,20 +153,20 @@ public class PlayerController : MonoBehaviour
 			}
 		}
 		
-		rb.linearVelocityX = _speedX;
+		rb2D.linearVelocityX = _speedX;
 	}
 
 	private void HandleJumping()
 	{
 		if(_needToJump)
 		{
-			rb.AddForce(Vector2.up * stats.GetDynamicStat(Stat.JumpForce), ForceMode2D.Impulse);
+			rb2D.AddForce(Vector2.up * stats.GetDynamicStat(Stat.JumpForce), ForceMode2D.Impulse);
 		}
 		
 		if(!surfaceSensor.Grounded)
 		{
-			rb.linearVelocityY -= gravity * Time.deltaTime;
-			rb.linearVelocityY = Mathf.Max(rb.linearVelocityY, -stats.GetStaticStat(Stat.FallSpeed));
+			rb2D.linearVelocityY -= gravity * Time.deltaTime;
+			rb2D.linearVelocityY = Mathf.Max(rb2D.linearVelocityY, -stats.GetStaticStat(Stat.FallSpeed));
 		}
 		else
 		{
