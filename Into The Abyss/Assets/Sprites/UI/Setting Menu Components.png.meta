@@ -1,10 +1,13 @@
 fileFormatVersion: 2
-guid: f59ee39c5ba4350498af4cbb9dcbe5e5
+guid: 8b6eb27a30dfd614dbaeaa4ebb697770
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -1540456931250235756
-    second: UI Elements_0
+      213: -7546079503407652294
+    second: Setting Menu Components_0
+  - first:
+      213: -6131990786448171910
+    second: Setting Menu Components_1
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -139,33 +142,11 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Button-Frame
-      rect:
-        serializedVersion: 2
-        x: 2
-        y: 54
-        width: 31
-        height: 8
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 4969a0d25923f9ae0800000000000000
-      internalID: -1540456931250235756
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: Slider_Background
       rect:
         serializedVersion: 2
-        x: 2
-        y: 48
+        x: 3
+        y: 27
         width: 40
         height: 3
       alignment: 0
@@ -174,10 +155,32 @@ TextureImporter:
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: 16822935a8157a04fb63a42435fe6e9c
-      internalID: -579735321
+      spriteID: a32e7882ca0f64790800000000000000
+      internalID: -7546079503407652294
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Back_Button
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 21
+        width: 10
+        height: 5
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a7cd9cf4edac6eaa0800000000000000
+      internalID: -6131990786448171910
       vertices: []
       indices: 
       edges: []
@@ -186,8 +189,8 @@ TextureImporter:
       name: Slider_Handle
       rect:
         serializedVersion: 2
-        x: 3
-        y: 43
+        x: 4
+        y: 22
         width: 3
         height: 4
       alignment: 0
@@ -198,8 +201,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ba6aefdc590cb0e4aac8bd8cdef6d70f
-      internalID: -79403499
+      spriteID: adb6010fe8d16a84ab258dfce6de85df
+      internalID: -964860624
       vertices: []
       indices: 
       edges: []
@@ -208,8 +211,8 @@ TextureImporter:
       name: Selector_Button
       rect:
         serializedVersion: 2
-        x: 9
-        y: 42
+        x: 10
+        y: 21
         width: 4
         height: 5
       alignment: 0
@@ -220,30 +223,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2d1c28df0e4b6154a80ead84d2d845ce
-      internalID: 527917701
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Back_Button
-      rect:
-        serializedVersion: 2
-        x: 15
-        y: 42
-        width: 10
-        height: 5
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: c348688ed2098024ab6a6d9ddd3ae98b
-      internalID: 1067727862
+      spriteID: e4e34f2616929214f97909bd72b9b5c1
+      internalID: -1740813821
       vertices: []
       indices: 
       edges: []
@@ -252,7 +233,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: fe375a22349709f40b9288e264c35406
+    spriteID: aa3ff2dde2ecb54438e69cc7f46a3e6c
     internalID: 0
     vertices: []
     indices: 
@@ -262,11 +243,10 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Back_Button: 1067727862
-      Button-Frame: -1540456931250235756
-      Selector_Button: 527917701
-      Slider_Background: -579735321
-      Slider_Handle: -79403499
+      Back_Button: -6131990786448171910
+      Selector_Button: -1740813821
+      Slider_Background: -7546079503407652294
+      Slider_Handle: -964860624
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
