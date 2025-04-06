@@ -1,7 +1,6 @@
 using UnityEngine;
-using DG.Tweening;
 using UnityEngine.UI;
-using System;
+using DG.Tweening;
 
 public sealed class SceneTransitionEffect : MonoBehaviour
 {
@@ -10,7 +9,6 @@ public sealed class SceneTransitionEffect : MonoBehaviour
 	[SerializeField] private float fadeDuration;
 
 	[Header("Colors"), Space]
-	[SerializeField] private Color introColor;
 	[SerializeField] private Color normalColor;
 
 	// Private fields.
@@ -19,12 +17,6 @@ public sealed class SceneTransitionEffect : MonoBehaviour
 	private void Awake()
 	{
 		_tweenPool = new TweenPool();
-	}
-
-	public void IntroFade(float alpha, float delay, TweenCallback completeCallback)
-	{
-		fadeImage.color = introColor.ExtractRGB(1f - alpha);
-		BeginFading(alpha, delay, completeCallback);
 	}
 
 	public void NormalFade(float alpha, float delay, TweenCallback completeCallback)

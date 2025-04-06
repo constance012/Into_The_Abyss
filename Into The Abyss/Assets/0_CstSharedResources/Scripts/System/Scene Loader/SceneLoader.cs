@@ -12,10 +12,10 @@ public sealed class SceneLoader : PersistentSingleton<SceneLoader>
 	// Private fields.
 	private AsyncOperation _preloadOperation;
 
-	private void Start()
+	private void OnEnable()
 	{
+		SceneManager.sceneLoaded -= Scene_Loaded;
 		SceneManager.sceneLoaded += Scene_Loaded;
-		transition.IntroFade(0f, .5f, null);
 	}
 
 	private void OnDestroy()
