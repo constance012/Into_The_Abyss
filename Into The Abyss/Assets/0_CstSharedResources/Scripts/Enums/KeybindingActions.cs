@@ -3,13 +3,11 @@
 /// </summary>
 public enum KeybindingActions
 {
-	Attack,
-	ToggleAimMode,
-	Aiming,
-	Movement,
-	ContinueDialogue,
-	Interact,
-	Reload,
+	Dig,
+	MoveLeft,
+	MoveRight,
+	MoveUp,
+	MoveDown,
+	Jump,
 	BackToMenu,
-	SkipPlayable
 }
