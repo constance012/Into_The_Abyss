@@ -1,9 +1,10 @@
+using Unity.Cinemachine;
 using UnityEngine;
 
 public class CameraMovement : MonoBehaviour
 {
 	[Header("References"), Space]
-	[SerializeField] private Camera followCamera;
+	[SerializeField] private CinemachineCamera followCamera;
 	[SerializeField] private Transform bottomPoint;
 
 	[Header("Camera Follow Settings"), Space]
@@ -25,8 +26,11 @@ public class CameraMovement : MonoBehaviour
 
 	void Update()
 	{
-		MoveDown();    
-		FollowPlayer();
+		if (GameManager.Instance.GameStarted)
+		{
+			MoveDown();
+			FollowPlayer();
+		}
 	}
 
 	private void MoveDown()
@@ -38,12 +42,12 @@ public class CameraMovement : MonoBehaviour
 
 		_distanceY = transform.position.y - PlayerController.Position.y;
 
-		if (_distanceY > followCamera.orthographicSize)
+		if (_distanceY > followCamera.Lens.OrthographicSize)
 		{
 			_targetPos = new Vector3(transform.position.x, PlayerController.Position.y, transform.position.z);
 		}
 		
-		if (_distanceY < -followCamera.orthographicSize)
+		if (_distanceY < -followCamera.Lens.OrthographicSize)
 		{
 			_gameOverDelay -= Time.deltaTime;
 			
@@ -57,7 +61,7 @@ public class CameraMovement : MonoBehaviour
 
 	private void FollowPlayer()
 	{
-		if(_distanceY > followCamera.orthographicSize)
+		if(_distanceY > followCamera.Lens.OrthographicSize)
 		{
 			transform.position = Vector3.Slerp(transform.position, _targetPos, followSpeed * Time.deltaTime);
 		}

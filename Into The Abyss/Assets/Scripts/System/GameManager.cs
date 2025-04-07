@@ -8,6 +8,30 @@ public class GameManager : Singleton<GameManager>
 	public static event Action OnGameVictory;
 
 	public bool GameDone { get; private set; }
+	public bool GameStarted { get; private set; }
+
+	private float _currentDepth;
+
+	private void Start()
+	{
+		CameraSwitcher.Instance.Switch(CameraType.SurfaceCamera);	
+	}
+
+	private void Update()
+	{
+		MonitorDepth();
+	}
+
+	private void MonitorDepth()
+	{
+		_currentDepth = PlayerController.Position.y;
+
+		if (_currentDepth < -10f && !GameStarted)
+		{
+			CameraSwitcher.Instance.Switch(CameraType.DigCamera);
+			GameStarted = true;
+		}
+	}
 
 	public void GameOver()
 	{
