@@ -65658,6 +65658,7 @@ GameObject:
   - component: {fileID: 1290175349}
   - component: {fileID: 1290175347}
   - component: {fileID: 1290175350}
+  - component: {fileID: 1290175353}
   - component: {fileID: 1290175351}
   - component: {fileID: 1290175352}
   m_Layer: 3
@@ -65730,14 +65731,6 @@ MonoBehaviour:
   acceleration: 30
   deceleration: 33
   gravity: 9.81
-  ground: {fileID: 151018876}
-  digPoint: {fileID: 1254883133}
-  tileTable:
-    _serializedList:
-    - Key: {fileID: 11400000, guid: e08126550c97e8a4eb7f6104ff3192f7, type: 2}
-      Value: {fileID: 11400000, guid: a6805beaec9b08d47b2df303df2d8450, type: 2}
-    - Key: {fileID: 11400000, guid: a37e4050d5d71ac44af6e97723cee9df, type: 2}
-      Value: {fileID: 11400000, guid: f5f9d74b21455f14793210d08b5511e0, type: 2}
 --- !u!114 &1290175351
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -65770,6 +65763,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 3
+--- !u!114 &1290175353
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1290175346}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83775080cb522f74d87071cc3d2a4a91, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stats: {fileID: 11400000, guid: cc9145b79ea5b9344a6f946fcabea029, type: 2}
+  diggableTilemap: {fileID: 151018876}
+  digPoint: {fileID: 1254883133}
 --- !u!1 &1638624015
 GameObject:
   m_ObjectHideFlags: 0

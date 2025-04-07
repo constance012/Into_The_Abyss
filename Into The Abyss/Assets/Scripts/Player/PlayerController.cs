@@ -1,6 +1,4 @@
-using AYellowpaper.SerializedCollections;
 using UnityEngine;
-using UnityEngine.Tilemaps;
 
 public class PlayerController : MonoBehaviour
 {
@@ -17,18 +15,10 @@ public class PlayerController : MonoBehaviour
 	[Header("Jumping"), Space]
 	[SerializeField] private float gravity = 9.81f;
 
-	[Header("Digging"), Space]
-	[SerializeField] private Tilemap ground;
-	[SerializeField] private Transform digPoint;
-
-	[Header("Tile Table"), Space]
-	[SerializeField] private SerializedDictionary<TileBase, TypeTile> tileTable;
-
 	public static Vector2 Position { get; private set; }
 
 	private float _inputX;
 	private float _previousInputX;
-	private float _digInterval;
 	private float _speedX;
 	private bool _needToJump;
 	private bool _facingRight = true;
@@ -37,9 +27,6 @@ public class PlayerController : MonoBehaviour
 	{
 		CheckInput();
 		CheckFlip();
-		CheckDigging();
-
-		_digInterval -= Time.deltaTime;
 	}
 
 	private void FixedUpdate()
@@ -78,26 +65,6 @@ public class PlayerController : MonoBehaviour
 		{
 			playerGraphic.Rotate(0f, -180f, 0f);
 			_facingRight = !_facingRight;
-		}
-	}
-
-	private void CheckDigging()
-	{
-		if((Input.GetMouseButton(0) || LegacyInputManager.Instance.GetKey(KeybindingActions.Dig)) && _digInterval <= 0f)
-		{
-			Vector3Int gridPosition = ground.WorldToCell(digPoint.position);
-
-			TileBase currentTile = ground.GetTile(gridPosition);
-
-			if(currentTile != null && tileTable.TryGetValue(currentTile, out TypeTile typeTile))
-			{
-				if (typeTile.Destructible)
-				{
-					ground.SetTile(gridPosition, null);
-				}
-			}
-
-			_digInterval = stats.GetDynamicStat(Stat.DigInterval);
 		}
 	}
 
