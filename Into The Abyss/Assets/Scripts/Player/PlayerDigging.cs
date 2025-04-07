@@ -6,9 +6,13 @@ public class PlayerDigging : MonoBehaviour
 {
 	[Header("References"), Space]
 	[SerializeField] private Stats stats;
-	[SerializeField] private Tilemap diggableTilemap;
 	[SerializeField] private Transform digPivot;
 	[SerializeField] private Transform digPoint;
+
+	[Header("Tile maps"), Space]
+	[SerializeField] private Tilemap diggableTilemap;
+	[SerializeField] private Tilemap smallDecorsTilemap;
+	[SerializeField] private Tilemap largeDecorsTilemap;
 
 	[Header("Player Graphic"), Space]
 	[SerializeField] private PlayerAnimator playerAnimator;
@@ -54,9 +58,11 @@ public class PlayerDigging : MonoBehaviour
 				Vector3Int gridPosition = diggableTilemap.WorldToCell(digPoint.position);
 				TileBase currentTile = diggableTilemap.GetTile(gridPosition);
 
-				if(currentTile != null)
+				if (currentTile != null)
 				{
 					diggableTilemap.SetTile(gridPosition, null);
+					smallDecorsTilemap.SetTile(gridPosition + Vector3Int.up, null);
+					largeDecorsTilemap.SetTile(gridPosition + Vector3Int.up, null);
 				}
 
 				_digInterval = stats.GetDynamicStat(Stat.DigInterval);
