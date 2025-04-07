@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 8f813687ec3629e42992e8fe49a4fbdc
+guid: b8786bbb68bd343468776d60c3177520
 ScriptedImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -126,8 +126,8 @@ ScriptedImporter:
   spriteSheetImportData: []
   asepriteLayers:
   - layerIndex: 0
-    guid: -112609048
-    name: tilemap
+    guid: -871339364
+    name: tilemap_official
     layerFlags: 0
     layerType: 0
     blendMode: 0
@@ -150,5 +150,5 @@ ScriptedImporter:
   generatePhysicsShape: 0
   secondarySpriteTextures: []
   spritePackingTag: 
-  canvasSize: {x: 352, y: 226}
+  canvasSize: {x: 224, y: 80}
   previousTextureSize: {x: 0, y: 0}
