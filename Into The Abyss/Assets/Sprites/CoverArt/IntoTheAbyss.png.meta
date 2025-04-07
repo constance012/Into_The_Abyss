@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 78b37281367e12c4d8ee7fcedec863aa
+guid: 996eee9060decf14c98524490f7c8ad0
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 2282105791412931156
-    second: Pickup Label_0
+      213: 6991163048273998805
+    second: IntoTheAbyss_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -37,7 +37,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -46,7 +46,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -75,7 +75,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -139,13 +139,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Pickup Label_0
+      name: IntoTheAbyss_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 188
-        height: 256
+        width: 1280
+        height: 720
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -154,8 +154,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 45a870d402babaf10800000000000000
-      internalID: 2282105791412931156
+      spriteID: 5d3753b60c9950160800000000000000
+      internalID: 6991163048273998805
       vertices: []
       indices: 
       edges: []
@@ -164,7 +164,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 5e97eb03825dee720800000000000000
     internalID: 0
     vertices: []
     indices: 
@@ -174,7 +174,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Pickup Label_0: 2282105791412931156
+      IntoTheAbyss_0: 6991163048273998805
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

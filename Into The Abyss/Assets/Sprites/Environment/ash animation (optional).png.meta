@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 78b37281367e12c4d8ee7fcedec863aa
+guid: e10523929fe41184e91ecb41a83b27a2
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 2282105791412931156
-    second: Pickup Label_0
+      213: -6432062091013312786
+    second: ash animation (optional)_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -139,13 +139,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Pickup Label_0
+      name: ash animation (optional)_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 188
-        height: 256
+        width: 3712
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -154,8 +154,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 45a870d402babaf10800000000000000
-      internalID: 2282105791412931156
+      spriteID: eee25e35b99bcb6a0800000000000000
+      internalID: -6432062091013312786
       vertices: []
       indices: 
       edges: []
@@ -174,7 +174,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Pickup Label_0: 2282105791412931156
+      ash animation (optional)_0: -6432062091013312786
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
