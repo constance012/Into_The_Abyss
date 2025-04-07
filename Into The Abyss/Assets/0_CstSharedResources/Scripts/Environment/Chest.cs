@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class Chest : Interactable
@@ -5,18 +6,24 @@ public class Chest : Interactable
 	[Header("Chest References"), Space]
 	[SerializeField] private Animator animator;
 
+	[Header("Settings"), Space]
+	[SerializeField] private bool isVictoryChest;
+
+	public static event Action OnChestOpened;
+
 	public override void Interact()
 	{
-		_isInteracted = !_isInteracted;
+		if (!_isInteracted)
+		{
+			_isInteracted = true;
 
-		if (_isInteracted)
-		{
 			animator.Play("Open");
-			GameManager.Instance.GameVictory();
-		}
-		else
-		{
-			animator.Play("Close");
+			OnChestOpened?.Invoke();
+
+			if (isVictoryChest)
+			{
+				GameManager.Instance.GameVictory();
+			}
 		}
 	}
 

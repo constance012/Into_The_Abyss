@@ -42,6 +42,11 @@ public class PlayerController : MonoBehaviour
 
 	private void CheckInput()
 	{
+		if (GameManager.Instance.GameDone)
+		{
+			return;
+		}
+		
 		if (LegacyInputManager.Instance.GetKeyDown(KeybindingActions.Jump) && surfaceSensor.Grounded)
 		{
 			_needToJump = true;
