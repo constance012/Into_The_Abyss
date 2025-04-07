@@ -8,6 +8,8 @@ public class ResultScreenController : MonoBehaviour
 	[SerializeField] private TweenableUIMaster victoryScreen;
 
 	[Header("UI References"), Space]
+	[SerializeField] private TweenableUIMaster chestCountHUD;
+	[SerializeField] private TextMeshProUGUI chestCountHUDText;
 	[SerializeField] private TextMeshProUGUI chestCountText;
 
 	[Header("Settings"), Space]
@@ -17,7 +19,8 @@ public class ResultScreenController : MonoBehaviour
 
 	private void Start()
 	{
-		_chestOpened = 0;	
+		_chestOpened = 0;
+		chestCountHUDText.text = $"{_chestOpened} / {totalChest}";
 	}
 
 	private void OnEnable()
@@ -52,6 +55,9 @@ public class ResultScreenController : MonoBehaviour
 	public void Chest_OnChestOpened()
 	{
 		_chestOpened++;
+
+		chestCountHUD.StartTweening(true);
+		chestCountHUDText.text = $"{_chestOpened} / {totalChest}";
 	}
 
 	private async void GameManager_OnGameOver()

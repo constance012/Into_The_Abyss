@@ -3,40 +3,45 @@ using UnityEngine;
 
 public class HealthPoint : MonoBehaviour
 {
-    public static event Action<int, Vector2> OnHealthChange;
+	[Header("Stats"), Space]
+	[SerializeField] private Stats stats;
 
-    [Header("Health"), Space]
-    [SerializeField] public int maxHealth = 3;
-    private int _health;
-    public int CurrentHealth { 
-        get{
-            return _health;
-        }
-        private set{
-            _health = value;
+	public static event Action<int, Vector2> OnHealthChange;
 
-            if(_health > maxHealth)
-            {
-                _health = maxHealth;
-            }
+	public int CurrentHealth { 
+		get{
+			return _health;
+		}
+		private set{
+			_health = value;
 
-            if(_health <= 0)
-            {
-                _health = 0;
-                Debug.Log("Player is dead!");
-            }
-        }
-    }
+			if(_health > _maxHealth)
+			{
+				_health = _maxHealth;
+			}
 
-    private void Start()
-    {
-        ChangeHealth(maxHealth, Vector2.zero);
-    }
+			if(_health <= 0)
+			{
+				_health = 0;
+				Debug.Log("Player is dead!");
+				GameManager.Instance.GameOver();
+			}
+		}
+	}
 
-    public void ChangeHealth(int change, Vector2 knockback)
-    {
-        CurrentHealth += change;
+	private int _maxHealth;
+	private int _health;
 
-        OnHealthChange?.Invoke(CurrentHealth, knockback);
-    }
+	private void Start()
+	{
+		_maxHealth = (int)stats.GetDynamicStat(Stat.MaxHealth);
+		ChangeHealth(_maxHealth, Vector2.zero);
+	}
+
+	public void ChangeHealth(int change, Vector2 knockback)
+	{
+		CurrentHealth += change;
+
+		OnHealthChange?.Invoke(CurrentHealth, knockback);
+	}
 }

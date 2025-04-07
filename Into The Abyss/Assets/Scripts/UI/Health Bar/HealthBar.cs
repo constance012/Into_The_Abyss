@@ -8,6 +8,7 @@ public class HealthBar : MonoBehaviour
 	[Header("References"), Space]
 	[SerializeField] private Slider mainSlider;
 	[SerializeField] private Slider fxSlider;
+	[SerializeField] private Stats stats;
 
 	[Space, SerializeField] private TextMeshProUGUI displayText;
 
@@ -32,6 +33,27 @@ public class HealthBar : MonoBehaviour
 	{
 		_mainFillRect = mainSlider.fillRect.GetComponent<Image>();
 		_fxFillRect = fxSlider.fillRect.GetComponent<Image>();
+	}
+
+	private void Start()
+	{
+		SetMaxHealth(stats.GetDynamicStat(Stat.MaxHealth));
+	}
+
+	private void OnEnable()
+	{
+		HealthPoint.OnHealthChange -= HealthPoint_OnHealthChange;
+		HealthPoint.OnHealthChange += HealthPoint_OnHealthChange;
+	}
+
+	private void OnDisable()
+	{
+		HealthPoint.OnHealthChange -= HealthPoint_OnHealthChange;
+	}
+
+	private void HealthPoint_OnHealthChange(int current, Vector2 knockBack)
+	{
+		SetCurrentHealth(current);
 	}
 
 	public void SetCurrentHealth(float current)

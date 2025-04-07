@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
@@ -29,6 +30,11 @@ public class PlayerController : MonoBehaviour
 	private bool _needToJump;
 	private bool _facingRight = true;
 	private bool _canMove = true;
+
+	private void Awake()
+	{
+		Position = rb2D.position;
+	}
 
 	private void Update()
 	{
@@ -171,7 +177,7 @@ public class PlayerController : MonoBehaviour
 	{
 		_canMove = false;
 
-		rb.AddForce(knockback, ForceMode2D.Impulse);
+		rb2D.AddForce(knockback, ForceMode2D.Impulse);
 
 		yield return new WaitForSeconds(TimeWaitForKnockBack);
 
@@ -183,11 +189,11 @@ public class PlayerController : MonoBehaviour
 		StartCoroutine(PerformKnockBack(knockback));
 	}
 
-    void OnEnable()
-    {
-        HealthPoint.OnHealthChange -= KnockBack;
+	void OnEnable()
+	{
+		HealthPoint.OnHealthChange -= KnockBack;
 		HealthPoint.OnHealthChange += KnockBack;
-    }
+	}
 	void OnDisable()
 	{
 		HealthPoint.OnHealthChange -= KnockBack;
