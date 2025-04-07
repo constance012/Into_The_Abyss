@@ -18,6 +18,9 @@ public class PlayerController : MonoBehaviour
 	[Header("Jumping"), Space]
 	[SerializeField] private float gravity = 9.81f;
 
+	[Header("Knock Back"), Space]
+	[SerializeField] private float TimeWaitForKnockBack = 0.5f;
+
 	public static Vector2 Position { get; private set; }
 
 	private float _inputX;
@@ -25,9 +28,15 @@ public class PlayerController : MonoBehaviour
 	private float _speedX;
 	private bool _needToJump;
 	private bool _facingRight = true;
+	private bool _canMove = true;
 
 	private void Update()
 	{
+		if(!_canMove)
+		{
+			return;
+		}
+
 		CheckInput();
 		CheckFlip();
 	}
@@ -35,6 +44,12 @@ public class PlayerController : MonoBehaviour
 	private void FixedUpdate()
 	{
 		HandleJumping();
+
+		if(!_canMove)
+		{
+			return;
+		}
+		
 		HandleMovement();
 
 		Position = rb2D.position;
@@ -150,5 +165,31 @@ public class PlayerController : MonoBehaviour
 		}
 
 		playerAnimator.SetFloat(PlayerAnimatorParameters.VelocityY, rb2D.linearVelocityY);
+	}
+
+	private IEnumerator PerformKnockBack(Vector2 knockback)
+	{
+		_canMove = false;
+
+		rb.AddForce(knockback, ForceMode2D.Impulse);
+
+		yield return new WaitForSeconds(TimeWaitForKnockBack);
+
+		_canMove = true;
+	}
+
+	public void KnockBack(int health, Vector2 knockback)
+	{
+		StartCoroutine(PerformKnockBack(knockback));
+	}
+
+    void OnEnable()
+    {
+        HealthPoint.OnHealthChange -= KnockBack;
+		HealthPoint.OnHealthChange += KnockBack;
+    }
+	void OnDisable()
+	{
+		HealthPoint.OnHealthChange -= KnockBack;
 	}
 }

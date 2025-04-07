@@ -3,13 +3,12 @@ using UnityEngine;
 
 public class HealthPoint : MonoBehaviour
 {
-    public static event Action<int> OnHealthChange;
-    public static event Action OnPlayerDie;
+    public static event Action<int, Vector2> OnHealthChange;
 
-    [Header("Health")]
-    public int maxHealth = 3;
+    [Header("Health"), Space]
+    [SerializeField] public int maxHealth = 3;
     private int _health;
-    public int currentHealth { 
+    public int CurrentHealth { 
         get{
             return _health;
         }
@@ -24,33 +23,20 @@ public class HealthPoint : MonoBehaviour
             if(_health <= 0)
             {
                 _health = 0;
-                Die();
+                Debug.Log("Player is dead!");
             }
         }
     }
 
-    private void Die()
+    private void Start()
     {
-        Debug.Log("Player has died.");
-        OnPlayerDie?.Invoke();
+        ChangeHealth(maxHealth, Vector2.zero);
     }
 
-    private void Awake()
+    public void ChangeHealth(int change, Vector2 knockback)
     {
-        currentHealth = maxHealth;
-    }
+        CurrentHealth += change;
 
-    public void TakeDamage(int damage)
-    {
-        currentHealth -= damage;
-        OnHealthChange?.Invoke(currentHealth);
-        Debug.Log("currentHealth: " + currentHealth);
-    }
-
-    public void Heal(int healAmount)
-    {
-        currentHealth += healAmount;
-        OnHealthChange?.Invoke(currentHealth);
-        Debug.Log("currentHealth: " + currentHealth);
+        OnHealthChange?.Invoke(CurrentHealth, knockback);
     }
 }
