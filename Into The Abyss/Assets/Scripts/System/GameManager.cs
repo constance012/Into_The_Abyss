@@ -9,6 +9,7 @@ public class GameManager : Singleton<GameManager>
 
 	public bool GameDone { get; private set; }
 	public bool GameStarted { get; private set; }
+	public float CurrentDepthInMeter => _currentDepth;
 
 	private float _currentDepth;
 
@@ -38,6 +39,7 @@ public class GameManager : Singleton<GameManager>
 		Debug.Log("Game Over!");
 
 		GameDone = true;
+		GameStarted = false;
 		OnGameOver?.Invoke();
 	}
 
@@ -47,6 +49,7 @@ public class GameManager : Singleton<GameManager>
 		SceneLoader.Instance.LoadSceneAsync("Scenes/Main Gameplay");
 		
 		GameDone = false;
+		GameStarted = false;
 		OnGameRetry?.Invoke();
 	}
 
@@ -55,12 +58,14 @@ public class GameManager : Singleton<GameManager>
 		Debug.Log("Game Victory!");
 		
 		GameDone = true;
+		GameStarted = false;
 		OnGameVictory?.Invoke();
 	}
 
 	public void BackToMenu()
 	{
 		GameDone = false;
+		GameStarted = false;
 		SceneLoader.Instance.LoadSceneAsync("Scenes/Main Menu");
 	}
 }
