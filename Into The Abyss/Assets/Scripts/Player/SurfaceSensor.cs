@@ -19,4 +19,12 @@ public class SurfaceSensor : MonoBehaviour
 		Grounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayers) != null;
 		TouchedWalls = Physics2D.OverlapCircle(wallCheck.position, wallCheckRadius, groundLayers) != null;
 	}
+
+	private void OnDrawGizmosSelected()
+	{
+		Gizmos.color = Color.red;
+		Gizmos.DrawWireSphere(groundCheck.position, groundCheckRadius);
+		Gizmos.color = Color.cyan;
+		Gizmos.DrawWireSphere(wallCheck.position, wallCheckRadius);
+	}
 }

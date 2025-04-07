@@ -59,7 +59,16 @@ public class PlayerController : MonoBehaviour
 
 	private void CheckFlip()
 	{
-		bool mustFlip = (_facingRight && _speedX < 0f) || (!_facingRight && _speedX > 0f);
+		bool mustFlip;
+
+		if (surfaceSensor.TouchedWalls)
+		{
+			mustFlip = (_facingRight && _inputX < 0f) || (!_facingRight && _inputX > 0f);
+		}
+		else
+		{
+			mustFlip = (_facingRight && _speedX < 0f) || (!_facingRight && _speedX > 0f);
+		}
 
 		if (mustFlip)
 		{
@@ -89,33 +98,54 @@ public class PlayerController : MonoBehaviour
 	}
 
 	private void HandleMovement()
-	{		
-		if (Mathf.Abs(_inputX) > 0f)
+	{
+		if (surfaceSensor.TouchedWalls)
 		{
+			if (Mathf.Abs(_speedX) > 0f)
+			{
+				_speedX = 0f;
+			}
 			// Accelerate.
-			if (_inputX >= 0f)
+			if (_inputX >= 0f && !_facingRight)
 			{
 				_speedX += acceleration * _inputX * Time.deltaTime;
 				_speedX = Mathf.Min(stats.GetDynamicStat(Stat.MoveSpeed), _speedX);
 			}
-			else
+			else if (_inputX < 0f && _facingRight)
 			{
 				_speedX += acceleration * _inputX * Time.deltaTime;
 				_speedX = Mathf.Max(-stats.GetDynamicStat(Stat.MoveSpeed), _speedX);
 			}
 		}
-		else if (Mathf.Abs(_speedX) > 0f)
+		else
 		{
-			// Decelerate.
-			if (_speedX >= 0f)
+			if (Mathf.Abs(_inputX) > 0f)
 			{
-				_speedX -= deceleration * _previousInputX * Time.deltaTime;
-				_speedX = Mathf.Max(0f, _speedX);
+				// Accelerate.
+				if (_inputX >= 0f)
+				{
+					_speedX += acceleration * _inputX * Time.deltaTime;
+					_speedX = Mathf.Min(stats.GetDynamicStat(Stat.MoveSpeed), _speedX);
+				}
+				else
+				{
+					_speedX += acceleration * _inputX * Time.deltaTime;
+					_speedX = Mathf.Max(-stats.GetDynamicStat(Stat.MoveSpeed), _speedX);
+				}
 			}
-			else
+			else if (Mathf.Abs(_speedX) > 0f)
 			{
-				_speedX -= deceleration * _previousInputX * Time.deltaTime;
-				_speedX = Mathf.Min(0f, _speedX);
+				// Decelerate.
+				if (_speedX >= 0f)
+				{
+					_speedX -= deceleration * _previousInputX * Time.deltaTime;
+					_speedX = Mathf.Max(0f, _speedX);
+				}
+				else
+				{
+					_speedX -= deceleration * _previousInputX * Time.deltaTime;
+					_speedX = Mathf.Min(0f, _speedX);
+				}
 			}
 		}
 		
