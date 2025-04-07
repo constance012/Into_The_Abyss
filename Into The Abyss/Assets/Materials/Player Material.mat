@@ -86,7 +86,7 @@ Material:
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _FlashColor: {r: 1, g: 1, b: 1, a: 0}
+    - _FlashColor: {r: 0.8018868, g: 0.14751692, b: 0.14751692, a: 0}
     - _OutlineColor: {r: 0.7924528, g: 0.33148944, b: 0.115877524, a: 1}
   m_BuildTextureStacks: []
   m_AllowLocking: 1

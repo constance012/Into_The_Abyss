@@ -177,7 +177,10 @@ public class PlayerController : MonoBehaviour
 	{
 		_canMove = false;
 
-		rb2D.AddForce(knockback, ForceMode2D.Impulse);
+		if (knockback != Vector2.zero)
+		{
+			rb2D.AddForce(knockback, ForceMode2D.Impulse);
+		}
 
 		yield return new WaitForSeconds(TimeWaitForKnockBack);
 

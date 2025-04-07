@@ -1,10 +1,15 @@
 using System;
+using System.Collections;
 using UnityEngine;
 
 public class HealthPoint : MonoBehaviour
 {
 	[Header("Stats"), Space]
 	[SerializeField] private Stats stats;
+
+	[Header("References"), Space]
+	[SerializeField] private SpriteRenderer spriteRenderer;
+	[SerializeField] private float damageFlashTime;
 
 	public static event Action<int, Vector2> OnHealthChange;
 
@@ -29,12 +34,14 @@ public class HealthPoint : MonoBehaviour
 		}
 	}
 
+	private Material _mat;
 	private int _maxHealth;
 	private int _health;
 
 	private void Start()
 	{
 		_maxHealth = (int)stats.GetDynamicStat(Stat.MaxHealth);
+		_mat = spriteRenderer.material;
 		ChangeHealth(_maxHealth, Vector2.zero);
 	}
 
@@ -42,6 +49,27 @@ public class HealthPoint : MonoBehaviour
 	{
 		CurrentHealth += change;
 
+		if (change < 0)
+		{
+			StartCoroutine(TriggerDamageFlash());
+		}
+
 		OnHealthChange?.Invoke(CurrentHealth, knockback);
+	}
+
+	protected IEnumerator TriggerDamageFlash()
+	{
+		float flashIntensity;
+		float elapsedTime = 0f;
+
+		while (elapsedTime < damageFlashTime)
+		{
+			elapsedTime += Time.deltaTime;
+
+			flashIntensity = Mathf.Lerp(1f, 0f, elapsedTime / damageFlashTime);
+			_mat.SetFloat("_FlashIntensity", flashIntensity);
+
+			yield return null;
+		}
 	}
 }

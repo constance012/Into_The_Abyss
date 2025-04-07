@@ -125,7 +125,7 @@ ScriptedImporter:
   animatedSpriteImportData:
   - name: large objective 2
     originalName: 
-    pivot: {x: 0.5947955, y: 0}
+    pivot: {x: 0.5042017, y: 0}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     customData: 
@@ -133,7 +133,7 @@ ScriptedImporter:
       serializedVersion: 2
       x: 4
       y: 4
-      width: 269
+      width: 238
       height: 14
     spriteID: 9a823aaac9d0fcf41b9a2843270de164
     spriteBone: []
@@ -159,7 +159,7 @@ ScriptedImporter:
       cellRect:
         x: 0
         y: 0
-        width: 269
+        width: 238
         height: 14
       spriteId: 9a823aaac9d0fcf41b9a2843270de164
     linkedCells: []
@@ -240,5 +240,5 @@ ScriptedImporter:
   generatePhysicsShape: 0
   secondarySpriteTextures: []
   spritePackingTag: 
-  canvasSize: {x: 320, y: 16}
-  previousTextureSize: {x: 512, y: 32}
+  canvasSize: {x: 240, y: 16}
+  previousTextureSize: {x: 256, y: 32}
