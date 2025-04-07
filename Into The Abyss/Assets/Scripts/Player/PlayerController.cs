@@ -2,11 +2,14 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-	[Header("Refernces"), Space]
+	[Header("References"), Space]
 	[SerializeField] private Stats stats;
 	[SerializeField] private Rigidbody2D rb2D;
 	[SerializeField] private SurfaceSensor surfaceSensor;
+
+	[Header("Player Graphic"), Space]
 	[SerializeField] private Transform playerGraphic;
+	[SerializeField] private PlayerAnimator playerAnimator;
 
 	[Header("Movement"), Space]
 	[SerializeField] private float acceleration = 0.29f;
@@ -121,6 +124,7 @@ public class PlayerController : MonoBehaviour
 		}
 		
 		rb2D.linearVelocityX = _speedX;
+		playerAnimator.SetFloat(PlayerAnimatorParameters.VelocityX, Mathf.Abs(_speedX));
 	}
 
 	private void HandleJumping()
@@ -139,5 +143,7 @@ public class PlayerController : MonoBehaviour
 		{
 			_needToJump = false;
 		}
+
+		playerAnimator.SetFloat(PlayerAnimatorParameters.VelocityY, rb2D.linearVelocityY);
 	}
 }

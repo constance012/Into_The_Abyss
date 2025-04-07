@@ -8,6 +8,9 @@ public class PlayerDigging : MonoBehaviour
 	[SerializeField] private Tilemap diggableTilemap;
 	[SerializeField] private Transform digPoint;
 
+	[Header("Player Graphic"), Space]
+	[SerializeField] private PlayerAnimator playerAnimator;
+
 	private float _digInterval;
 
 	private void Update()
@@ -18,18 +21,26 @@ public class PlayerDigging : MonoBehaviour
 
 	private void CheckDigging()
 	{
-		if((Input.GetMouseButton(0) || LegacyInputManager.Instance.GetKey(KeybindingActions.Dig)) && _digInterval <= 0f)
+		if(Input.GetMouseButton(0) || LegacyInputManager.Instance.GetKey(KeybindingActions.Dig))
 		{
-			Vector3Int gridPosition = diggableTilemap.WorldToCell(digPoint.position);
+			playerAnimator.SetBool(PlayerAnimatorParameters.IsDigging, true);
 
-			TileBase currentTile = diggableTilemap.GetTile(gridPosition);
-
-			if(currentTile != null)
+			if (_digInterval <= 0f)
 			{
-				diggableTilemap.SetTile(gridPosition, null);
-			}
+				Vector3Int gridPosition = diggableTilemap.WorldToCell(digPoint.position);
+				TileBase currentTile = diggableTilemap.GetTile(gridPosition);
 
-			_digInterval = stats.GetDynamicStat(Stat.DigInterval);
+				if(currentTile != null)
+				{
+					diggableTilemap.SetTile(gridPosition, null);
+				}
+
+				_digInterval = stats.GetDynamicStat(Stat.DigInterval);
+			}
+		}
+		else
+		{
+			playerAnimator.SetBool(PlayerAnimatorParameters.IsDigging, false);
 		}
 	}
 }
