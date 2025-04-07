@@ -41,7 +41,7 @@ public class ProjectileLauncher : MonoBehaviour
 
     void FixedUpdate()
     {
-        rb.linearVelocity = new Vector2(rb.linearVelocityX + facingRight * moveSpeed, rb.linearVelocityY);
+        rb.linearVelocity = new Vector2(facingRight * moveSpeed, rb.linearVelocityY);
     }
 
     void OnTriggerEnter2D(Collider2D collision)
