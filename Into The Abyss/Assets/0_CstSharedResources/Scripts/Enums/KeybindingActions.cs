@@ -10,4 +10,5 @@ public enum KeybindingActions
 	MoveDown,
 	Jump,
 	BackToMenu,
+	Interact,
 }

@@ -40,8 +40,7 @@ public class InteractionPopupLabel : MonoBehaviour
 	{
 		SetLabelName("");
 
-		// Needs fix.
-		keyboardCue.text = "";
+		keyboardCue.text = LegacyInputManager.Instance.GetKeyForAction(KeybindingActions.Interact).ToString();
 
 		switch (inputSource)
 		{
