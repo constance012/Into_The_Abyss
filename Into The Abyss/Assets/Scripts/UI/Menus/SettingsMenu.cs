@@ -21,6 +21,7 @@ public sealed class SettingsMenu : MonoBehaviour
 	[SerializeField] private StringSelector qualitySelector;
 	[SerializeField] private StringSelector framerateSelector;
 	[SerializeField] private StringSelector vsyncSelector;
+	[SerializeField] private StringSelector measurementUnitSelector;
 
 	private void OnEnable()
 	{
@@ -133,5 +134,6 @@ public sealed class SettingsMenu : MonoBehaviour
 		qualitySelector.Index = UserSettings.QualityLevel;
 		framerateSelector.Value = UserSettings.TargetFramerate.ToString();
 		vsyncSelector.Index = UserSettings.UseVsync;
+		measurementUnitSelector.Index = UserSettings.MetricType;
 	}
 }

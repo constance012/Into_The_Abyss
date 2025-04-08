@@ -133,7 +133,7 @@ MonoBehaviour:
     clips:
     - {fileID: 8300000, guid: c69a04491c339b640a45621de8ed84d1, type: 3}
     mixerGroup: {fileID: -5921564593601054585, guid: 39507725e2fa7a54a8e5117cc1640ef4, type: 2}
-    volume: 1
+    volume: 0.7
     pitch: 1
     loop: 0
     source: {fileID: 0}
@@ -178,7 +178,7 @@ MonoBehaviour:
     clips:
     - {fileID: 8300000, guid: 5637e1f923f17ae4fa6bb07b2120285d, type: 3}
     mixerGroup: {fileID: -5921564593601054585, guid: 39507725e2fa7a54a8e5117cc1640ef4, type: 2}
-    volume: 1
+    volume: 0.8
     pitch: 1
     loop: 0
     source: {fileID: 0}
@@ -187,7 +187,7 @@ MonoBehaviour:
     clips:
     - {fileID: 8300000, guid: 236d02dc8bd1bd84dbfdca00ab8755c0, type: 3}
     mixerGroup: {fileID: -7357349819620316516, guid: 39507725e2fa7a54a8e5117cc1640ef4, type: 2}
-    volume: 1
+    volume: 0.7
     pitch: 1
     loop: 1
     source: {fileID: 0}
