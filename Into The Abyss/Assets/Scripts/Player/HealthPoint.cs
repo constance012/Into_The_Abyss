@@ -13,11 +13,14 @@ public class HealthPoint : MonoBehaviour
 
 	public static event Action<int, Vector2> OnHealthChange;
 
-	public int CurrentHealth { 
-		get{
+	public int CurrentHealth
+	{ 
+		get
+		{
 			return _health;
 		}
-		private set{
+		private set
+		{
 			_health = value;
 
 			if(_health > _maxHealth)
@@ -49,14 +52,13 @@ public class HealthPoint : MonoBehaviour
 	{
 		CurrentHealth += change;
 
-		if (change < 0)
+		if (CurrentHealth > 0)
 		{
-			AudioManager.Instance.Play("Injured");
-			StartCoroutine(TriggerDamageFlash());
-		}
-		else
-		{
-			AudioManager.Instance.Play("Healing");
+			if (change < 0)
+			{
+				AudioManager.Instance.Play("Injured");
+				StartCoroutine(TriggerDamageFlash());
+			}
 		}
 
 		OnHealthChange?.Invoke(CurrentHealth, knockback);

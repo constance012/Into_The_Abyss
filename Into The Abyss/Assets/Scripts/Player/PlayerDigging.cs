@@ -32,6 +32,11 @@ public class PlayerDigging : MonoBehaviour
 
 	private void LateUpdate()
 	{
+		if (GameManager.Instance.GameDone)
+		{
+			return;
+		}
+		
 		CheckDigging();
 	}
 
@@ -55,19 +60,19 @@ public class PlayerDigging : MonoBehaviour
 
 			if (_digInterval <= 0f)
 			{
-				AudioManager.Instance.PlayWithRandomPitch("Dig", .7f, 1.2f);
-				
 				Vector3Int gridPosition = diggableTilemap.WorldToCell(digPoint.position);
 				TileBase currentTile = diggableTilemap.GetTile(gridPosition);
 
 				if (currentTile != null)
 				{
+					AudioManager.Instance.PlayWithRandomPitch("Dig", .7f, 1.2f);
+
 					diggableTilemap.SetTile(gridPosition, null);
 					smallDecorsTilemap.SetTile(gridPosition + Vector3Int.up, null);
 					largeDecorsTilemap.SetTile(gridPosition + Vector3Int.up, null);
+					
+					_digInterval = stats.GetDynamicStat(Stat.DigInterval);
 				}
-
-				_digInterval = stats.GetDynamicStat(Stat.DigInterval);
 			}
 		}
 		else

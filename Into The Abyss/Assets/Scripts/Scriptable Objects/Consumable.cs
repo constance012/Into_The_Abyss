@@ -22,8 +22,10 @@ public class Consumable : Item
 
 			if (healingType == HealingType.Health)
 			{
+				AudioManager.Instance.Play("Healing");
 				player.ChangeHealth(healingAmount, Vector2.zero);
 				quantity--;
+				
 				return true;
 			}
 		}
