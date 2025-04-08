@@ -14,9 +14,9 @@ PlayerSettings:
   accelerometerFrequency: 60
   companyName: Hiyuka Studios
   productName: Into The Abyss
-  defaultCursor: {fileID: 0}
+  defaultCursor: {fileID: 2800000, guid: 8f01adc3dcd0642419e0c319469700ae, type: 3}
   cursorHotspot: {x: 0, y: 0}
-  m_SplashScreenBackgroundColor: {r: 0.78431374, g: 0.36535937, b: 0.2117647, a: 1}
+  m_SplashScreenBackgroundColor: {r: 0.5921569, g: 0.3254902, b: 0.2392157, a: 1}
   m_ShowUnitySplashScreen: 1
   m_ShowUnitySplashLogo: 1
   m_SplashScreenOverlayOpacity: 1
@@ -785,7 +785,7 @@ PlayerSettings:
   webGLTemplate: APPLICATION:Default
   webGLAnalyzeBuildSize: 0
   webGLUseEmbeddedResources: 0
-  webGLCompressionFormat: 0
+  webGLCompressionFormat: 2
   webGLWasmArithmeticExceptions: 0
   webGLLinkerTarget: 1
   webGLThreadsSupport: 0
