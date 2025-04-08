@@ -16,6 +16,8 @@ MonoBehaviour:
     _serializedList:
     - Key: 0
       Value: 115
+    - Key: 7
+      Value: 101
     - Key: 1
       Value: 97
     - Key: 2
@@ -28,5 +30,3 @@ MonoBehaviour:
       Value: 32
     - Key: 6
       Value: 27
-    - Key: 7
-      Value: 101

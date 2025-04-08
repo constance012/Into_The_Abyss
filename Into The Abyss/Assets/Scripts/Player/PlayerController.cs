@@ -176,16 +176,16 @@ public class PlayerController : MonoBehaviour
 
 	private IEnumerator PerformKnockBack(Vector2 knockback)
 	{
-		_canMove = false;
-
 		if (knockback != Vector2.zero)
 		{
+			_canMove = false;
+
 			rb2D.AddForce(knockback, ForceMode2D.Impulse);
+			
+			yield return new WaitForSeconds(TimeWaitForKnockBack);
+			
+			_canMove = true;
 		}
-
-		yield return new WaitForSeconds(TimeWaitForKnockBack);
-
-		_canMove = true;
 	}
 
 	public void KnockBack(int health, Vector2 knockback)
