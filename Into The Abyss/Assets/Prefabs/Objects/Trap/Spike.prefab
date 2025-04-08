@@ -124,6 +124,7 @@ MonoBehaviour:
   damage: 1
   knockbackForce: {x: 5, y: 3}
   destroyAfterInteract: 0
+  cameraCheckTimer: 3
 --- !u!212 &9001335520642403626
 SpriteRenderer:
   m_ObjectHideFlags: 0

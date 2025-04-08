@@ -15,12 +15,18 @@ public class GameManager : Singleton<GameManager>
 
 	private void Start()
 	{
-		CameraSwitcher.Instance.Switch(CameraType.SurfaceCamera);	
+		CameraSwitcher.Instance.Switch(CameraType.SurfaceCamera);
+		AudioManager.Instance.Play("Wind Ambience");
 	}
 
 	private void Update()
 	{
 		MonitorDepth();
+
+		if (LegacyInputManager.Instance.GetKeyDown(KeybindingActions.BackToMenu))
+		{
+			BackToMenu();
+		}
 	}
 
 	private void MonitorDepth()
@@ -30,6 +36,10 @@ public class GameManager : Singleton<GameManager>
 		if (_currentDepth < -10f && !GameStarted)
 		{
 			CameraSwitcher.Instance.Switch(CameraType.DigCamera);
+			
+			AudioManager.Instance.Stop("Wind Ambience");
+			AudioManager.Instance.Play("Cave Ambience");
+			
 			GameStarted = true;
 		}
 	}

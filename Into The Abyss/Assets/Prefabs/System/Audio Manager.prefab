@@ -1,0 +1,242 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &2829344532905755578
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1145125937173520464}
+  m_Layer: 0
+  m_Name: Sound
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1145125937173520464
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2829344532905755578}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 413324966062332298}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &4423894102619228026
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8337995609120386578}
+  m_Layer: 0
+  m_Name: Ambience
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8337995609120386578
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4423894102619228026}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 413324966062332298}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &5235199968320407630
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 413324966062332298}
+  - component: {fileID: 1401126686100421332}
+  m_Layer: 0
+  m_Name: Audio Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &413324966062332298
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5235199968320407630}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 2568017900340622166}
+  - {fileID: 1145125937173520464}
+  - {fileID: 8337995609120386578}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1401126686100421332
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5235199968320407630}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe49656fc5d8c4917a8dbfef5be11e26, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioArray:
+  - name: Dig
+    audioType: 0
+    clips:
+    - {fileID: 8300000, guid: b83504e24bf53284d960347e9e7bff61, type: 3}
+    mixerGroup: {fileID: -5921564593601054585, guid: 39507725e2fa7a54a8e5117cc1640ef4, type: 2}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Arrow Shot
+    audioType: 0
+    clips:
+    - {fileID: 8300000, guid: 7608be06c70448a48920372c9c7e86b9, type: 3}
+    mixerGroup: {fileID: -5921564593601054585, guid: 39507725e2fa7a54a8e5117cc1640ef4, type: 2}
+    volume: 0.3
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Injured
+    audioType: 0
+    clips:
+    - {fileID: 8300000, guid: c69a04491c339b640a45621de8ed84d1, type: 3}
+    mixerGroup: {fileID: -5921564593601054585, guid: 39507725e2fa7a54a8e5117cc1640ef4, type: 2}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Jump
+    audioType: 0
+    clips:
+    - {fileID: 8300000, guid: 69b119a88e2cd0c47a041644061e9b5f, type: 3}
+    mixerGroup: {fileID: -5921564593601054585, guid: 39507725e2fa7a54a8e5117cc1640ef4, type: 2}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Open Chest
+    audioType: 0
+    clips:
+    - {fileID: 8300000, guid: c6c0602bcd6aa094aaf7e5b3ecee5932, type: 3}
+    mixerGroup: {fileID: -5921564593601054585, guid: 39507725e2fa7a54a8e5117cc1640ef4, type: 2}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Spike
+    audioType: 0
+    clips:
+    - {fileID: 8300000, guid: 924594d0bbc1d2f4eac2bd8118417cbf, type: 3}
+    mixerGroup: {fileID: -5921564593601054585, guid: 39507725e2fa7a54a8e5117cc1640ef4, type: 2}
+    volume: 0.3
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Healing
+    audioType: 0
+    clips:
+    - {fileID: 8300000, guid: e9edb77c86797dc49a32462ba432454c, type: 3}
+    mixerGroup: {fileID: -5921564593601054585, guid: 39507725e2fa7a54a8e5117cc1640ef4, type: 2}
+    volume: 0.3
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Crate Break
+    audioType: 0
+    clips:
+    - {fileID: 8300000, guid: 5637e1f923f17ae4fa6bb07b2120285d, type: 3}
+    mixerGroup: {fileID: -5921564593601054585, guid: 39507725e2fa7a54a8e5117cc1640ef4, type: 2}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Main Theme
+    audioType: 1
+    clips:
+    - {fileID: 8300000, guid: 236d02dc8bd1bd84dbfdca00ab8755c0, type: 3}
+    mixerGroup: {fileID: -7357349819620316516, guid: 39507725e2fa7a54a8e5117cc1640ef4, type: 2}
+    volume: 1
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}
+  - name: Wind Ambience
+    audioType: 2
+    clips:
+    - {fileID: 8300000, guid: 18751e018456b1f49b7ab1fd5bf95397, type: 3}
+    mixerGroup: {fileID: -1343950490493927583, guid: 39507725e2fa7a54a8e5117cc1640ef4, type: 2}
+    volume: 1
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}
+  - name: Cave Ambience
+    audioType: 2
+    clips:
+    - {fileID: 8300000, guid: ef427bf8a0ba9a94a805e8a04888e2af, type: 3}
+    mixerGroup: {fileID: -1343950490493927583, guid: 39507725e2fa7a54a8e5117cc1640ef4, type: 2}
+    volume: 1
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}
+--- !u!1 &5542138693577727897
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2568017900340622166}
+  m_Layer: 0
+  m_Name: Music
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2568017900340622166
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5542138693577727897}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 413324966062332298}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

@@ -18,6 +18,8 @@ public class Chest : Interactable
 			_isInteracted = true;
 
 			animator.Play("Open");
+			AudioManager.Instance.Play("Open Chest");
+
 			OnChestOpened?.Invoke();
 
 			if (isVictoryChest)

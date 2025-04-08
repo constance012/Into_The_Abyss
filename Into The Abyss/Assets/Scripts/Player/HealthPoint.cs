@@ -51,7 +51,12 @@ public class HealthPoint : MonoBehaviour
 
 		if (change < 0)
 		{
+			AudioManager.Instance.Play("Injured");
 			StartCoroutine(TriggerDamageFlash());
+		}
+		else
+		{
+			AudioManager.Instance.Play("Healing");
 		}
 
 		OnHealthChange?.Invoke(CurrentHealth, knockback);

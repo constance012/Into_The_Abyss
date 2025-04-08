@@ -55,6 +55,8 @@ public class PlayerDigging : MonoBehaviour
 
 			if (_digInterval <= 0f)
 			{
+				AudioManager.Instance.PlayWithRandomPitch("Dig", .7f, 1.2f);
+				
 				Vector3Int gridPosition = diggableTilemap.WorldToCell(digPoint.position);
 				TileBase currentTile = diggableTilemap.GetTile(gridPosition);
 

@@ -51,6 +51,7 @@ MonoBehaviour:
   moveSpeed: 10
   damage: 1
   knockbackForce: {x: 2, y: 0}
+  cameraCheckTimer: 3
 --- !u!1 &8244855552605138020
 GameObject:
   m_ObjectHideFlags: 0

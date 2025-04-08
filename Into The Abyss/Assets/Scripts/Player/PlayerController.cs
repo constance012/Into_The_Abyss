@@ -157,6 +157,7 @@ public class PlayerController : MonoBehaviour
 	{
 		if(_needToJump)
 		{
+			AudioManager.Instance.PlayWithRandomPitch("Jump", .7f, 1.2f);
 			rb2D.AddForce(Vector2.up * stats.GetDynamicStat(Stat.JumpForce), ForceMode2D.Impulse);
 		}
 		
