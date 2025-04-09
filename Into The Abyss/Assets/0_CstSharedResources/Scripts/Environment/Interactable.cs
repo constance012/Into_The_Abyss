@@ -91,7 +91,7 @@ public abstract class Interactable : MonoBehaviour
 
 		_mat.SetFloat("_Thickness", .4f);
 
-		if (Input.GetKeyDown(KeyCode.E))
+		if (LegacyInputManager.Instance.GetKeyDown(KeybindingActions.Interact))
 			Interact();
 			
 		// TODO - derived classes implement their own way to visualize interaction.

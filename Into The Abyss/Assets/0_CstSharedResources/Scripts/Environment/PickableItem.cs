@@ -4,6 +4,7 @@ using DG.Tweening;
 public sealed class PickableItem : Interactable, IPoolable
 {
 	[Header("References"), Space]
+	[SerializeField] private Item _currentItem;
 	[SerializeField] private Rigidbody2D rb2D;
 
 	[Header("Life Time"), Space]
@@ -17,16 +18,21 @@ public sealed class PickableItem : Interactable, IPoolable
 	[SerializeField] private float pickUpFailDelay;
 
 	// Private fields.
-	private Item _currentItem;
 	private int _overrideQuantity = -1;
 	private float _lifeTime;
 	private float _delay;
+
+	private void Start()
+	{
+		Initialize(_currentItem, 1);
+	}
 
 	public void Initialize(Item itemSO, int overrideQuantity)
 	{
 		_lifeTime = lifeTime;
 		_isInteracted = false;
 		_overrideQuantity = overrideQuantity;
+		_delay = pickUpFailDelay;
 
 		_currentItem = Instantiate(itemSO);
 		_currentItem.name = itemSO.name;
@@ -94,7 +100,7 @@ public sealed class PickableItem : Interactable, IPoolable
 		{
 			Debug.Log($"You're picking up a(n) {_currentItem.displayName}");
 			
-			if (_currentItem.autoUse && _currentItem.Use(_player, forced: _delay > 0f))
+			if (_currentItem.autoUse && _currentItem.Use(forced: _delay > 0f))
 			{
 				_isInteracted = true;
 				Disable();

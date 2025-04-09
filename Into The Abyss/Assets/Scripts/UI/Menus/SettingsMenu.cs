@@ -94,6 +94,11 @@ public sealed class SettingsMenu : MonoBehaviour
 		UserSettings.UseVsync = useVsync;
 	}
 
+	public void SetMetricType(int index)
+	{
+		UserSettings.MetricType = index;
+	}
+
 	public void ResetToDefault()
 	{
 		UserSettings.ResetToDefault(UserSettings.SettingSection.All);

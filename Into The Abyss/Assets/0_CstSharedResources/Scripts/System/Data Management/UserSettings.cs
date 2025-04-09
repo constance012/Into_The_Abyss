@@ -67,6 +67,12 @@ public static class UserSettings
 		get { return PlayerPrefs.GetInt("DialogueSpeed", 50); }
 		set { PlayerPrefs.SetInt("DialogueSpeed", value); }
 	}
+
+	public static int MetricType
+	{
+		get { return PlayerPrefs.GetInt("MetricType", 1); }
+		set { PlayerPrefs.SetInt("MetricType", value); }
+	}
 	#endregion
 
 	/// <summary>
@@ -93,6 +99,7 @@ public static class UserSettings
 			case SettingSection.Gameplay:
 				AimSpeed = 3f;
 				DialogueSpeed = 50;
+				MetricType = 1;
 				break;
 
 			case SettingSection.All:
@@ -107,6 +114,7 @@ public static class UserSettings
 
 				AimSpeed = 3f;
 				DialogueSpeed = 50;
+				MetricType = 1;
 				break;
 		}
 	}

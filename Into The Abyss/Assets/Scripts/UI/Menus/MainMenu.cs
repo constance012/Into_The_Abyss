@@ -35,7 +35,7 @@ public sealed class MainMenu : MonoBehaviour
 	public void StartGame()
 	{
 		DOTween.Clear();
-		SceneLoader.Instance.LoadSceneAsync("Scenes/Prologue");
+		SceneLoader.Instance.LoadSceneAsync("Scenes/Main Gameplay");
 	}
 
 	public void QuitGame()
