@@ -1,12 +1,13 @@
 using System;
 using System.Collections;
+using AssetUsageDetectorNamespace;
 using UnityEngine;
 
 public class PlayerVitality : MonoBehaviour, IDamageable, IHealable
 {
 	[Header("Player Components"), Space]
 	[SerializeField] private Stats stats;
-	[SerializeField] private MonoBehaviour movementScript;
+	[SerializeField] private PlatformerController movementScript;
 
 	[Header("References"), Space]
 	[SerializeField] private Rigidbody2D rb2D;
@@ -87,8 +88,9 @@ public class PlayerVitality : MonoBehaviour, IDamageable, IHealable
 		if (attackerPos == default)
 			yield break;
 
-		rb2D.linearVelocity = Vector3.zero;
-		movementScript.enabled = false;
+
+		rb2D.linearVelocity = Vector2.zero;
+		movementScript.SetEnable(false);
 
 		Vector2 direction = transform.position - attackerPos;
 		float knockBackStrength = strength * (1f - stats.GetStaticStat(Stat.KnockBackRes));
@@ -99,7 +101,7 @@ public class PlayerVitality : MonoBehaviour, IDamageable, IHealable
 
 		yield return new WaitForSeconds(.25f);
 
-		movementScript.enabled = true;
+		movementScript.SetEnable(true);
 	}
 
 	private IEnumerator TriggerDamageFlash()

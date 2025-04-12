@@ -40,11 +40,11 @@ public class CameraMovement : MonoBehaviour
 			transform.position += moveSpeed * Time.deltaTime * Vector3.down;
 		}
 
-		_distanceY = transform.position.y - PlayerController.Position.y;
+		_distanceY = transform.position.y - PlatformerController.Position.y;
 
 		if (_distanceY > followCamera.Lens.OrthographicSize)
 		{
-			_targetPos = new Vector3(transform.position.x, PlayerController.Position.y, transform.position.z);
+			_targetPos = new Vector3(transform.position.x, PlatformerController.Position.y, transform.position.z);
 		}
 		
 		if (_distanceY < -followCamera.Lens.OrthographicSize)

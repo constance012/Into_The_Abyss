@@ -15,13 +15,15 @@ MonoBehaviour:
   playerLayer:
     serializedVersion: 2
     m_Bits: 8
-  groundAcceleration: 30
-  groundDeceleration: 30
-  groundingForce: -2
+  maxGroundSpeed: 8
+  groundAcceleration: 70
+  groundDeceleration: 45
+  groundingForce: 1.5
   surfaceCastDistance: 0.05
-  maxFallSpeed: -5
-  airDeceleration: 10
+  jumpForce: 18
+  maxFallSpeed: 15
+  airDeceleration: 25
   fallGravity: 70
   gravityMultiplierWhenEndJumpEarly: 3
-  coyoteTime: 0.15
+  coyoteTime: 0.1
   jumpBufferTime: 0.2

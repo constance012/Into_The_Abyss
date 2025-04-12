@@ -43,7 +43,7 @@ public class PlayerDigging : MonoBehaviour
 	private void AimAtMouse()
 	{
 		Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-		_lookDirection = (mousePos - PlayerController.Position).normalized;
+		_lookDirection = (mousePos - PlatformerController.Position).normalized;
 
 		float lookAngle = Mathf.Atan2(_lookDirection.y, _lookDirection.x) * Mathf.Rad2Deg;
 
