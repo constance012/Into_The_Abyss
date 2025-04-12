@@ -46,7 +46,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   arrowPrefab: {fileID: 5060370332229507475, guid: 83ceefb4113497941a0f5086cfc98cae, type: 3}
   SpawnPoint: {fileID: 3584783135065963120}
-  spawnPerTime: 0.01
+  shootInterval: 1.5
   isArrowFacingRight: 0
   moveSpeed: 10
   damage: 1

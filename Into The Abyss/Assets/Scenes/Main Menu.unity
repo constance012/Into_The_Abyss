@@ -3880,6 +3880,7 @@ MonoBehaviour:
   qualitySelector: {fileID: 515894899}
   framerateSelector: {fileID: 697234364}
   vsyncSelector: {fileID: 1537512204}
+  measurementUnitSelector: {fileID: 1195532763}
 --- !u!1001 &1195532761
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4077,6 +4078,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7541385441989331596, guid: fa01631f257df9e419b7c7361b6bc865, type: 3}
+      propertyPath: defaultOptionIndex
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7541385441989331596, guid: fa01631f257df9e419b7c7361b6bc865, type: 3}
       propertyPath: options.Array.size
       value: 2
       objectReference: {fileID: 0}
@@ -4150,6 +4155,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 1416545873772083113, guid: fa01631f257df9e419b7c7361b6bc865, type: 3}
   m_PrefabInstance: {fileID: 1195532761}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1195532763 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7541385441989331596, guid: fa01631f257df9e419b7c7361b6bc865, type: 3}
+  m_PrefabInstance: {fileID: 1195532761}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 28a5d66a59695cd4b879e2ec6a764d1b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1244072076
 GameObject:
   m_ObjectHideFlags: 0

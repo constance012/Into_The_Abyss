@@ -1,5 +1,4 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
 /// <summary>
 /// A static wrapper class for easily manipulating PlayerPref keys.
@@ -70,7 +69,7 @@ public static class UserSettings
 
 	public static int MetricType
 	{
-		get { return PlayerPrefs.GetInt("MetricType", 1); }
+		get { return PlayerPrefs.GetInt("MetricType", 0); }
 		set { PlayerPrefs.SetInt("MetricType", value); }
 	}
 	#endregion

@@ -68,7 +68,7 @@ public class PlayerController : MonoBehaviour
 			return;
 		}
 		
-		if (LegacyInputManager.Instance.GetKeyDown(KeybindingActions.Jump) && surfaceSensor.Grounded)
+		if ((LegacyInputManager.Instance.GetKeyDown(KeybindingActions.Jump) || Input.GetKeyDown(KeyCode.W)) && surfaceSensor.Grounded)
 		{
 			_needToJump = true;
 		}
