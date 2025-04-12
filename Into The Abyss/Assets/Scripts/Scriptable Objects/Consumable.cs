@@ -18,16 +18,12 @@ public class Consumable : Item
 	{
 		if (quantity > 0 && canBeUsed)
 		{
-			HealthPoint player = GameObject.FindWithTag("Player").GetComponent<HealthPoint>();
+			var healable = GameObject.FindWithTag("Player").GetComponent<IHealable>();
+			healable?.Heal(healingAmount);
 
-			if (healingType == HealingType.Health)
-			{
-				AudioManager.Instance.Play("Healing");
-				player.ChangeHealth(healingAmount, Vector2.zero);
-				quantity--;
-				
-				return true;
-			}
+			AudioManager.Instance.Play("Healing");
+
+			return true;
 		}
 		else
 			Debug.LogWarning($"This {displayName} can not be used or its quantity is 0!!");

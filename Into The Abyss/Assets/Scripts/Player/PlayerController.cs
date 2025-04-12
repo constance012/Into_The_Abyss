@@ -19,9 +19,6 @@ public class PlayerController : MonoBehaviour
 	[Header("Jumping"), Space]
 	[SerializeField] private float gravity = 9.81f;
 
-	[Header("Knock Back"), Space]
-	[SerializeField] private float TimeWaitForKnockBack = 0.5f;
-
 	public static Vector2 Position { get; private set; }
 
 	private float _inputX;
@@ -29,7 +26,6 @@ public class PlayerController : MonoBehaviour
 	private float _speedX;
 	private bool _needToJump;
 	private bool _facingRight = true;
-	private bool _canMove = true;
 
 	private void Awake()
 	{
@@ -38,7 +34,7 @@ public class PlayerController : MonoBehaviour
 
 	private void Update()
 	{
-		if(!_canMove)
+		if (GameManager.Instance.GameDone)
 		{
 			return;
 		}
@@ -49,26 +45,20 @@ public class PlayerController : MonoBehaviour
 
 	private void FixedUpdate()
 	{
-		HandleJumping();
-
-		if(!_canMove)
+		if (GameManager.Instance.GameDone)
 		{
 			return;
 		}
-		
+
+		HandleJumping();		
 		HandleMovement();
 
 		Position = rb2D.position;
 	}
 
 	private void CheckInput()
-	{
-		if (GameManager.Instance.GameDone)
-		{
-			return;
-		}
-		
-		if ((LegacyInputManager.Instance.GetKeyDown(KeybindingActions.Jump) || Input.GetKeyDown(KeyCode.W)) && surfaceSensor.Grounded)
+	{		
+		if (LegacyInputManager.Instance.GetKeyDown(KeybindingActions.Jump) && surfaceSensor.Grounded)
 		{
 			_needToJump = true;
 		}
@@ -172,34 +162,5 @@ public class PlayerController : MonoBehaviour
 		}
 
 		playerAnimator.SetFloat(PlayerAnimatorParameters.VelocityY, rb2D.linearVelocityY);
-	}
-
-	private IEnumerator PerformKnockBack(Vector2 knockback)
-	{
-		if (knockback != Vector2.zero)
-		{
-			_canMove = false;
-
-			rb2D.AddForce(knockback, ForceMode2D.Impulse);
-			
-			yield return new WaitForSeconds(TimeWaitForKnockBack);
-			
-			_canMove = true;
-		}
-	}
-
-	public void KnockBack(int health, Vector2 knockback)
-	{
-		StartCoroutine(PerformKnockBack(knockback));
-	}
-
-	void OnEnable()
-	{
-		HealthPoint.OnHealthChange -= KnockBack;
-		HealthPoint.OnHealthChange += KnockBack;
-	}
-	void OnDisable()
-	{
-		HealthPoint.OnHealthChange -= KnockBack;
 	}
 }
