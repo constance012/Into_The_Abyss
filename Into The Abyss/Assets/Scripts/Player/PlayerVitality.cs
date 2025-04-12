@@ -1,6 +1,5 @@
 using System;
 using System.Collections;
-using AssetUsageDetectorNamespace;
 using UnityEngine;
 
 public class PlayerVitality : MonoBehaviour, IDamageable, IHealable
@@ -52,16 +51,13 @@ public class PlayerVitality : MonoBehaviour, IDamageable, IHealable
 
 			OnHealthChanged?.Invoke(_currentHealth);
 
+			AudioManager.Instance.Play("Injured");
 			StartCoroutine(TriggerDamageFlash());
 			StartCoroutine(BeingKnockedBack(attackerPos, attackerStats.GetStaticStat(Stat.KnockBackStrength)));
 
 			if (_currentHealth <= 0)
 			{
 				Die();
-			}
-			else
-			{
-				AudioManager.Instance.Play("Injured");
 			}
 		}
 	}
@@ -83,6 +79,19 @@ public class PlayerVitality : MonoBehaviour, IDamageable, IHealable
 		gameObject.SetActive(false);
 	}
 
+	private Vector2 OffsetStraightUpKnockBackDirection(Vector2 direction, float minAngle, float maxAngle)
+	{
+		float angle = Vector2.Angle(direction, Vector2.right);
+
+		if (angle >= minAngle && angle <= maxAngle)
+		{
+			float sign = angle <= 90f ? -1f : 1f;
+			direction = Quaternion.Euler(0f, 0f, 40f * sign) * direction;
+		}
+
+		return direction;
+	}
+
 	private IEnumerator BeingKnockedBack(Vector3 attackerPos, float strength)
 	{
 		if (attackerPos == default)
@@ -92,10 +101,12 @@ public class PlayerVitality : MonoBehaviour, IDamageable, IHealable
 		rb2D.linearVelocity = Vector2.zero;
 		movementScript.SetEnable(false);
 
-		Vector2 direction = transform.position - attackerPos;
+		Vector2 direction = (transform.position - attackerPos).normalized;
+		direction = OffsetStraightUpKnockBackDirection(direction, 80f, 120f);
+
 		float knockBackStrength = strength * (1f - stats.GetStaticStat(Stat.KnockBackRes));
 
-		Vector2 force = direction.normalized * knockBackStrength;
+		Vector2 force = direction * knockBackStrength;
 
 		rb2D.AddForce(force, ForceMode2D.Impulse);
 

@@ -7,8 +7,7 @@ public class ProjectileSpawner : MonoBehaviour
 	[SerializeField] private Transform SpawnPoint;
 
 	[Header("Spawn Setting"), Space]
-	[SerializeField] private float spawnPerTime = 1f;
-	private float timeFromLastPoint = 0f;
+	[SerializeField] private float spawnInteval;
 
 	[Header("Arrow Setting"), Space]
 	[SerializeField] private bool isArrowFacingRight = true;
@@ -17,6 +16,7 @@ public class ProjectileSpawner : MonoBehaviour
 	private Camera _mainCamera;
 	private float _cameraCheckTimer;
 	private bool _insideCameraView;
+	private float _spawnInterval;
 
 	private void Awake()
 	{
@@ -25,13 +25,13 @@ public class ProjectileSpawner : MonoBehaviour
 
 	private void Update()
 	{
-		if(timeFromLastPoint > 1/spawnPerTime)
+		_spawnInterval -= Time.deltaTime;
+		
+		if (_spawnInterval <= 0f)
 		{
 			SpawnArrow();
-			timeFromLastPoint = 0f;
+			_spawnInterval = spawnInteval;
 		}
-
-		timeFromLastPoint++;
 	}
 
 	private void LateUpdate()
