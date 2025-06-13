@@ -42,16 +42,16 @@ public class HealthBar : MonoBehaviour
 
 	private void OnEnable()
 	{
-		HealthPoint.OnHealthChange -= HealthPoint_OnHealthChange;
-		HealthPoint.OnHealthChange += HealthPoint_OnHealthChange;
+		PlayerVitality.OnHealthChanged -= HealthPoint_OnHealthChange;
+		PlayerVitality.OnHealthChanged += HealthPoint_OnHealthChange;
 	}
 
 	private void OnDisable()
 	{
-		HealthPoint.OnHealthChange -= HealthPoint_OnHealthChange;
+		PlayerVitality.OnHealthChanged -= HealthPoint_OnHealthChange;
 	}
 
-	private void HealthPoint_OnHealthChange(int current, Vector2 knockBack)
+	private void HealthPoint_OnHealthChange(int current)
 	{
 		SetCurrentHealth(current);
 	}

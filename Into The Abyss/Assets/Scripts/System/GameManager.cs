@@ -31,7 +31,7 @@ public class GameManager : Singleton<GameManager>
 
 	private void MonitorDepth()
 	{
-		_currentDepth = PlayerController.Position.y;
+		_currentDepth = PlatformerController.Position.y;
 
 		if (_currentDepth < -10f && !GameStarted)
 		{

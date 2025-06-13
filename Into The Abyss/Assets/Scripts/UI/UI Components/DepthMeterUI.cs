@@ -24,7 +24,7 @@ public class DepthMeterUI : MonoBehaviour
 
 	private void Update()
 	{
-		if (PlayerController.Position.y < 0f)
+		if (PlatformerController.Position.y < 0f)
 		{
 			UpdateUI();
 		}

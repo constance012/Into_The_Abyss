@@ -296,8 +296,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 3154258305536295517}
+  stats: {fileID: 11400000, guid: b9015e80986f4134f8240deed68730ef, type: 2}
   timeToDestroy: 10
-  moveSpeed: 3
   facingRight: 1
-  damage: 1
-  knockbackForce: {x: 0, y: 0}

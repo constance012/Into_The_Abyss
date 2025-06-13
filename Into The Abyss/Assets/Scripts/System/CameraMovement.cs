@@ -10,6 +10,7 @@ public class CameraMovement : MonoBehaviour
 	[Header("Camera Follow Settings"), Space]
 	[SerializeField] private float moveSpeed = 3f;
 	[SerializeField] private float followSpeed = 2f;
+	[SerializeField] private float followAheadOffset = 2f;
 	[SerializeField] private float gameOverDelay;
 
 	private Transform _cameraTransform;
@@ -40,14 +41,15 @@ public class CameraMovement : MonoBehaviour
 			transform.position += moveSpeed * Time.deltaTime * Vector3.down;
 		}
 
-		_distanceY = transform.position.y - PlayerController.Position.y;
+		_distanceY = transform.position.y - PlatformerController.Position.y + followAheadOffset;
+		Debug.Log(_distanceY);
 
 		if (_distanceY > followCamera.Lens.OrthographicSize)
 		{
-			_targetPos = new Vector3(transform.position.x, PlayerController.Position.y, transform.position.z);
+			_targetPos = new Vector3(transform.position.x, PlatformerController.Position.y, transform.position.z);
 		}
 		
-		if (_distanceY < -followCamera.Lens.OrthographicSize)
+		if (_distanceY < -followCamera.Lens.OrthographicSize + followAheadOffset)
 		{
 			_gameOverDelay -= Time.deltaTime;
 			

@@ -115,6 +115,7 @@ public class Stats : ScriptableObject
 public enum Stat
 {
 	// Dynamic.
+	AttackDamage,
 	MaxHealth,
 	DigInterval,
 	MoveSpeed,

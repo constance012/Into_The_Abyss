@@ -1,6 +1,6 @@
 using UnityEngine;
-using static Keyset;
 
+#if ENABLE_LEGACY_INPUT_MANAGER
 /// <summary>
 /// Manages all the keyboard input for the game, using Unity's old input system.
 /// </summary>
@@ -89,3 +89,4 @@ public class LegacyInputManager : Singleton<LegacyInputManager>
 		return 0f;
 	}
 }
+#endif

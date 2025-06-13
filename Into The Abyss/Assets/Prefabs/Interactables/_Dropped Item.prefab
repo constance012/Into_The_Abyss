@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 6994718978722962409}
   - component: {fileID: 6994718978722962408}
   - component: {fileID: 8799480899330041326}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: _Dropped Item
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -170,6 +170,7 @@ MonoBehaviour:
   spriteRenderer: {fileID: 6994718978722962410}
   popupLabelPrefab: {fileID: 8135185957320462521, guid: 2c91461e1bdcd044c9fa1849598a2b32, type: 3}
   interactDistance: 1
+  _currentItem: {fileID: 0}
   rb2D: {fileID: 6994718978722962409}
   lifeTime: 100
   flyDistance: 5
